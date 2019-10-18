@@ -1,0 +1,14 @@
+cd
+git init
+git clone url
+git remote add origin url
+git pull origin master
+git branch
+git branch name
+git checkout name
+git branch
+git add . or filename
+git commit -m "message"
+git push origin branch_name
+to delete,
+git branch -D branch_name
