@@ -1,0 +1,61 @@
+How to ignore files?
+$touch .gitignore
+$git add .gitignore
+$ git commit -m "Creating Ignore File list"
+$ vi .gitignore 
+	--list all the files here that needs to be ignored. Eg: *.log *.sql, abc.txt
+	# is a comment... if you want to add any notes in the files, start the line with #
+	--if you want to tract abc.log though you have asked to ignore all *.log files, you can specify the filename separately starting with ! mark
+		like, !abc.log --> all log files are ignored except abc.log
+	--doc/*.txt all txt files under doc folder will be ignored.
+$ git ls-files --others --ignored --exclude-standard --> to see the files that are ignored.	
+$ git log --oneline --> this will show the commits and comments only.
+
+$ git status -s --> Provide short description
+How to add a folder in Git repo?
+Create an empty folder and then create a txt file.
+And then add that file into stage and commit. thats it.
+
+How to create a Branch?
+$ git branch Dev
+$ git checkout Dev --> to work on branch
+$ git branch --> shows the no.of branches
+$ git branch -d Dev --> to delete a branch
+$ git branch -d Dev  --> we get below error when there are files in Dev branch that are not merged yet with master.
+error: The branch 'Dev' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D Dev'.
+$ git branch -D Dev --> Force delete, it will ignore the files committed in Dev branch but not added to master.
+Deleted branch Dev (was c5b9637).
+$git branch --> It shows in which brach you are on.  with #git status also we can see that.
+
+Checkout Branch?
+$ git checkout Dev
+We can also perform detached head checkouts... go to git log and perform $git checkout <lable>
+So you can look on the changes that are modified and once done, you can switch to other branch and this detached head branch is gone.
+$git checkout -b "new branch name" --> this wil let you create a new branch and also checkout
+
+
+
+Merge?
+Go to the branch in which you want to merge and run this command.
+$ git merge Dev
+In case the the file in current branch has some updates that are not in Dev branch, then we need to vi the file or abort it.
+<<<<<<HEAD Marker
+You will find the differences here (Like you see in beyond compare) - remove the corresponding rows, save and perform git add and then commit.
+>>>>>>End
+$ git merge squash --> use when you dont want to bring all the history together but get all commits
+$ git branch -d cleanup-the-variables --> this will cleanup variables when you dont want to maintain after merge
+
+Working with Remote?
+$ git remote add origin https://github.com/lokeshkamaly
+$ git remote set-url origin https://github.com/lokeshkamalay --> to change the url if incorrectly configured
+$ git remote rm origin --> to remove origin
+
+Reset?
+$ git reset HEAD --> this will help to unstange a file from staging.
+$ git reset --soft HEAD~5 --> This will merge latest 5 commits in single commit, so that you can clear some history.
+$ git reset --hard HEAD~5 --> This will erase lastest 5 commits.
+
+Reflog?
+$ git reflog --> This will show including commited and deleted checked out 
+$ git config gc.reflogexpireunreachable 30  --> it will keep latest 30 days of ref log only.
